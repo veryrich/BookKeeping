@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {{template "template/link.html"}}
+    <title>调整</title>
+</head>
+<body>
+<div class="ui sixteen column grid">
+
+    <div class="one column row"></div>
+    <div class="one column row">
+        <div class="column ui header" style="text-align: center">调整</div>
+    </div>
+
+    <div class="eleven column row">
+        <div class="one wide column"></div>
+
+        <div class="four wide column">
+            {{template "template/menu.html"}}
+        </div>
+        <div class="six wide column">
+            <form class="ui form" action="/income" method="post" enctype="application/x-www-form-urlencoded"
+                  accept-charset="utf-8">
+                {{ .xsrfdata }}
+                <div class="field">
+                    <label>用户名</label>
+                    <input type="text" name="name" placeholder="输入用户名..">
+                </div>
+
+                <div class="field">
+                    <label>卡号：</label>
+                    <input type="text" name="cardNumber" placeholder="请先选择一个用户.." readonly="">
+                </div>
+
+                <div class="field">
+
+                    <div class="inline fields">
+                        <label>调整：</label>
+                        <div class="field">
+                            <div class="ui radio checkbox">
+                                <input type="radio" name="adjustment" tabindex="1" class="hidden">
+                                <label>调增</label>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui radio checkbox">
+                                <input type="radio" name="adjustment" tabindex="0" class="hidden">
+                                <label>调减</label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="field">
+                    <label>金额：</label>
+                    <input type="text" name="amount" placeholder="输入金额..">
+                </div>
+
+                <div class="field">
+                    <label>备注：</label>
+                    <input type="text" name="serviceCharge" placeholder="请输入出款原因..">
+                </div>
+
+
+                <div class="ui buttons" style="float: 15px;padding-left: 40%;margin-top: 20px;">
+                    <button class="ui secondary  button">提交</button>
+                    <div class="or"></div>
+                    <button type="reset" class="ui  button">重置</button>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

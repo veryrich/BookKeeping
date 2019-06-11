@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {{template "template/link.html"}}
+    <title>出款</title>
+</head>
+<body>
+
+<form class="ui form" method="post" action="/outcome" enctype="application/x-www-form-urlencoded"
+      accept-charset="utf-8">
+    {{ .xsrfdata }}
+    <div class="ui grid">
+        <div class="one column row"></div>
+        <div class="one column row">
+            <div class="ui First header column" style="text-align: center">出款</div>
+        </div>
+
+        <div class="one wide column"></div>
+
+        <div class="four wide column">
+            {{template "template/menu.html"}}
+        </div>
+
+        <div class="four wide column">
+
+            <div class="ui header">出款人信息</div>
+
+            <div class="field">
+                <label>用户名</label>
+                <input type="text" name="name" placeholder="输入用户名..">
+            </div>
+
+            <div class="field">
+                <label>卡号：</label>
+                <input type="text" name="cardNumber" placeholder="请先选择一个用户.." readonly="">
+            </div>
+
+            <div class="field">
+                <label>金额：</label>
+                <input type="text" name="amount" placeholder="输入金额..">
+            </div>
+
+            <div class="field">
+                <label>提现手续费：</label>
+                <input type="text" name="serviceCharge" placeholder="提现手续费..">
+            </div>
+
+        </div>
+
+        <div class="one wide column"></div>
+
+        <div class="four wide column">
+
+            <div class="ui header">收款人信息</div>
+
+            <div class="field">
+                <label>用户名：</label>
+                <input type="text" name="name" placeholder="输入用户名..">
+            </div>
+
+            <div class="field">
+                <label>卡号：</label>
+                <input type="text" name="careNumber" placeholder="输入卡号..">
+            </div>
+
+            <div class="field">
+                <label>商户：</label>
+                <input type="text" name="merchant" placeholder="输入商户..">
+            </div>
+
+        </div>
+
+        <div class="one column row">
+            <div class="ui buttons" style="float: 15px;padding-left: 50%;margin-top: 20px;">
+                <button class="ui secondary  button">提交</button>
+                <div class="or"></div>
+                <button type="reset" class="ui  button">重置</button>
+            </div>
+        </div>
+
+    </div>
+</form>
+</body>
+</html>

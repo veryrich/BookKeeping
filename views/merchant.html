@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {{template "template/link.html"}}
+    <title>商户管理</title>
+</head>
+<body>
+
+<div class="ui grid">
+
+    <div class="one column row"></div>
+    <div class="one column row">
+        <div class="column ui header" style="text-align: center">商户管理</div>
+    </div>
+
+    <div class="twelve column row">
+        <div class="one wide column"></div>
+
+        <div class="four wide column">
+            {{template "template/menu.html"}}
+        </div>
+        <div class="eight wide column">
+            <form class="ui form" action="/income" method="post" enctype="application/x-www-form-urlencoded"
+                  accept-charset="utf-8">
+                {{ .xsrfdata }}
+                <div class="inline field">
+                    <label>添加商户：</label>
+                    <input type="text" name="merchant" placeholder="输入商户名..">
+                    <button class="ui secondary basic button">确定</button>
+                    <button class="ui basic button" style="margin-left: 25%;">
+                        <i class="clipboard list icon"></i>
+                        日志管理
+                    </button>
+                </div>
+            </form>
+
+            <table class="ui striped table">
+                <thead>
+                <tr>
+                    <th>商户名</th>
+                    <th>创建时间</th>
+                    <th>操作员</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>美日视频啊啊</td>
+                    <td>2019-06-06 16:29:01</td>
+                    <td>william</td>
+                    <td>
+                        <button>修改</button>
+                        <button>删除</button>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>
