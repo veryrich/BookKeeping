@@ -16,6 +16,9 @@ func init() {
 	beego.Include(&controllers.AdjustmentController{})
 	beego.Include(&controllers.MerchantController{})
 	beego.Include(&controllers.CardController{})
+	beego.Include(&controllers.StatisticsMerchantController{})
+	beego.Include(&controllers.StatisticsServiceChargeController{})
+	beego.Include(&controllers.StatisticsBalanceController{})
 
 	// 注册过滤器 todo:为了方便调试，暂时取消登录校验，上线后需要打开
 	//beego.InsertFilter("/*", beego.BeforeRouter, FilterUser)

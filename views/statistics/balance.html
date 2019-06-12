@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {{template "template/link.html"}}
+    <link rel="stylesheet" href="../../static/css/datepicker.min.css" type="text/css">
+    <script src="../../static/js/datepicker.min.js" type="text/javascript"></script>
+    <script src="../../static/i18n/datepicker.zh.js" type="text/javascript"></script>
+    <title>商户统计</title>
+</head>
+<body>
+<div class="ui grid">
+
+    <div class="one column row"></div>
+    <div class="one column row">
+        <div class="column ui header" style="text-align: center">商户统计</div>
+    </div>
+
+    <div class="twelve column row">
+        <div class="one wide column"></div>
+
+        <div class="four wide column">
+            {{template "template/menu.html"}}
+        </div>
+        <div class="nine wide column">
+            <table class="ui striped table">
+                <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>卡号</th>
+                    <th>余额</th>
+                    <th style="padding-left: 8%">明细</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>william</td>
+                    <td>6666888866668888</td>
+                    <td>500000</td>
+                    <td>
+                        <button class="ui basic button" style="margin-left: 1%;">
+                            <i class="chart line icon"></i>
+                            查看明细
+                        </button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>rich</td>
+                    <td>6666888866668888</td>
+                    <td>123124</td>
+                    <td>
+                        <button class="ui basic button" style="margin-left: 1%;">
+                            <i class="chart line icon"></i>
+                            查看明细
+                        </button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>derek</td>
+                    <td>6666888866668888</td>
+                    <td>123124</td>
+                    <td>
+                        <button class="ui basic button" style="margin-left: 1%;">
+                            <i class="chart line icon"></i>
+                            查看明细
+                        </button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>niko</td>
+                    <td>6666888866668888</td>
+                    <td>123124</td>
+                    <td>
+                        <button class="ui basic button" style="margin-left: 1%;">
+                            <i class="chart line icon"></i>
+                            查看明细
+                        </button>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+</div>
+<script>
+    $(document).ready(function () {
+        $('#datePicker').datepicker({
+            language: 'zh',
+            range: true,
+        });
+        #('#datePicker').data('datepicker')
+    })
+</script>
+</body>
+</html>
