@@ -33,7 +33,7 @@
                     <label>卡号：</label>
                     <input type="text" name="merchant" placeholder="输入商户名..">
                     <button class="ui secondary basic button">确定</button>
-                    <button class="ui basic button" style="margin-left: 1%;">
+                    <button class="ui basic button" style="margin-left: 1%;" onclick="goToCardLog()" type="button">
                         <i class="clipboard list icon"></i>
                         日志管理
                     </button>
@@ -52,10 +52,43 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td>威廉姆</td>
+                    <td>William</td>
+                    <td>6666888866668888</td>
+                    <td>2019-06-06 18:00:01</td>
+                    <td>niko</td>
+                    <td>
+                        <button>修改</button>
+                        <button>删除</button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Derek</td>
+                    <td>6666888866668888</td>
+                    <td>2019-06-06 18:00:01</td>
+                    <td>rich</td>
+                    <td>
+                        <button>修改</button>
+                        <button>删除</button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>rich</td>
                     <td>6666888866668888</td>
                     <td>2019-06-06 18:00:01</td>
                     <td>william</td>
+                    <td>
+                        <button>修改</button>
+                        <button>删除</button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>niko</td>
+                    <td>6666888866668888</td>
+                    <td>2019-06-06 18:00:01</td>
+                    <td>derek</td>
                     <td>
                         <button>修改</button>
                         <button>删除</button>
@@ -71,4 +104,9 @@
 
 </div>
 </body>
+<script>
+    function goToCardLog() {
+        window.location.assign("/card/log")
+    }
+</script>
 </html>

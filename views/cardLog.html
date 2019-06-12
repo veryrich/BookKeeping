@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {{template "template/link.html"}}
+    <title>卡片管理日志</title>
+</head>
+<body>
+
+<div class="ui grid">
+
+    <div class="one column row"></div>
+    <div class="one column row">
+        <div class="column ui header" style="text-align: center">卡片管理日志</div>
+    </div>
+
+    <div class="twelve column row">
+        <div class="one wide column"></div>
+
+        <div class="four wide column">
+            {{template "template/menu.html"}}
+        </div>
+        <div class="nine wide column">
+
+            <table class="ui striped table">
+                <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>卡号</th>
+                    <th>记录时间</th>
+                    <th>操作员</th>
+                    <th>行为</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>William</td>
+                    <td>6666888866668888</td>
+                    <td>2019-06-06 18:00:01</td>
+                    <td>niko</td>
+                    <td>
+                        增加
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Derek</td>
+                    <td>6666888866668888</td>
+                    <td>2019-06-06 18:00:01</td>
+                    <td>rich</td>
+                    <td>
+                        修改
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>rich</td>
+                    <td>6666888866668888</td>
+                    <td>2019-06-06 18:00:01</td>
+                    <td>william</td>
+                    <td>
+                        删除
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>niko</td>
+                    <td>6666888866668888</td>
+                    <td>2019-06-06 18:00:01</td>
+                    <td>derek</td>
+                    <td>
+                        增加
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>

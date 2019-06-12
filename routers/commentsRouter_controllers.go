@@ -43,6 +43,24 @@ func init() {
             Filters: nil,
             Params: nil})
 
+    beego.GlobalControllerRouter["BookKeeping/controllers:CardLogController"] = append(beego.GlobalControllerRouter["BookKeeping/controllers:CardLogController"],
+        beego.ControllerComments{
+            Method: "Get",
+            Router: `/card/log`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["BookKeeping/controllers:CardLogController"] = append(beego.GlobalControllerRouter["BookKeeping/controllers:CardLogController"],
+        beego.ControllerComments{
+            Method: "Post",
+            Router: `/card/log`,
+            AllowHTTPMethods: []string{"post"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
     beego.GlobalControllerRouter["BookKeeping/controllers:IncomeController"] = append(beego.GlobalControllerRouter["BookKeeping/controllers:IncomeController"],
         beego.ControllerComments{
             Method: "Get",
@@ -124,6 +142,24 @@ func init() {
             Filters: nil,
             Params: nil})
 
+    beego.GlobalControllerRouter["BookKeeping/controllers:MerchantLogController"] = append(beego.GlobalControllerRouter["BookKeeping/controllers:MerchantLogController"],
+        beego.ControllerComments{
+            Method: "Get",
+            Router: `/merchant/log`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["BookKeeping/controllers:MerchantLogController"] = append(beego.GlobalControllerRouter["BookKeeping/controllers:MerchantLogController"],
+        beego.ControllerComments{
+            Method: "Post",
+            Router: `/merchant/log`,
+            AllowHTTPMethods: []string{"post"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
     beego.GlobalControllerRouter["BookKeeping/controllers:OutcomeController"] = append(beego.GlobalControllerRouter["BookKeeping/controllers:OutcomeController"],
         beego.ControllerComments{
             Method: "Get",
@@ -155,6 +191,24 @@ func init() {
         beego.ControllerComments{
             Method: "Post",
             Router: `/statistics/balance`,
+            AllowHTTPMethods: []string{"post"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["BookKeeping/controllers:StatisticsBalanceDtailedController"] = append(beego.GlobalControllerRouter["BookKeeping/controllers:StatisticsBalanceDtailedController"],
+        beego.ControllerComments{
+            Method: "Get",
+            Router: `/statistics/balance/detailed`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["BookKeeping/controllers:StatisticsBalanceDtailedController"] = append(beego.GlobalControllerRouter["BookKeeping/controllers:StatisticsBalanceDtailedController"],
+        beego.ControllerComments{
+            Method: "Post",
+            Router: `/statistics/balance/detailed`,
             AllowHTTPMethods: []string{"post"},
             MethodParams: param.Make(),
             Filters: nil,
