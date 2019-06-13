@@ -61,3 +61,4 @@ func (this *LoginController) Logout() {
 	this.Redirect("/login", 301)
 
 }
+

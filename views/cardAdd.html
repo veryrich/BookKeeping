@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {{template "template/link.html"}}
+    <title>添加卡片</title>
+</head>
+<body>
+
+<div class="ui grid">
+
+    <div class="one column row"></div>
+    <div class="one column row">
+        <div class="column ui header" style="text-align: center">添加卡片</div>
+    </div>
+
+    <div class="twelve column row">
+        <div class="one wide column"></div>
+
+        <div class="four wide column">
+            {{template "template/menu.html"}}
+        </div>
+        <div class="five wide column">
+            <form class="ui form" action="/card/add" method="post" enctype="application/x-www-form-urlencoded"
+                  accept-charset="utf-8">
+                {{ .xsrfdata }}
+                <div class="field">
+                    <label>姓名</label>
+                    <input type="text" name="name" placeholder="请输入姓名..">
+                </div>
+
+                <div class="field">
+                    <label>卡号</label>
+                    <input type="text" name="cardNumber" placeholder="请输入卡号..">
+                </div>
+
+                <button class="ui button" type="submit">Submit</button>
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>

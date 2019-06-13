@@ -33,9 +33,16 @@
                     <label>卡号：</label>
                     <input type="text" name="merchant" placeholder="输入商户名..">
                     <button class="ui secondary basic button">确定</button>
+                </div>
+
+                <div class="inline field" style="margin-left: 4%">
+                    <button class="ui basic button" style="margin-left: 1%;" onclick="goToAddCard()" type="button">
+                        <i class="clipboard edit icon"></i>
+                        添加卡片
+                    </button>
                     <button class="ui basic button" style="margin-left: 1%;" onclick="goToCardLog()" type="button">
                         <i class="clipboard list icon"></i>
-                        日志管理
+                        查看日志
                     </button>
                 </div>
             </form>
@@ -107,6 +114,10 @@
 <script>
     function goToCardLog() {
         window.location.assign("/card/log")
+    }
+
+    function goToAddCard() {
+        window.location.assign("/card/add")
     }
 </script>
 </html>
