@@ -25,6 +25,24 @@ func init() {
             Filters: nil,
             Params: nil})
 
+    beego.GlobalControllerRouter["BookKeeping/controllers:AdminController"] = append(beego.GlobalControllerRouter["BookKeeping/controllers:AdminController"],
+        beego.ControllerComments{
+            Method: "Get",
+            Router: `/admin/user`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["BookKeeping/controllers:AdminController"] = append(beego.GlobalControllerRouter["BookKeeping/controllers:AdminController"],
+        beego.ControllerComments{
+            Method: "Post",
+            Router: `/admin/user`,
+            AllowHTTPMethods: []string{"post"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
     beego.GlobalControllerRouter["BookKeeping/controllers:CardController"] = append(beego.GlobalControllerRouter["BookKeeping/controllers:CardController"],
         beego.ControllerComments{
             Method: "Get",

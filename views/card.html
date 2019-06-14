@@ -58,49 +58,21 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>William</td>
-                    <td>6666888866668888</td>
-                    <td>2019-06-06 18:00:01</td>
-                    <td>niko</td>
-                    <td>
-                        <button>修改</button>
-                        <button>删除</button>
-                    </td>
-                </tr>
 
-                <tr>
-                    <td>Derek</td>
-                    <td>6666888866668888</td>
-                    <td>2019-06-06 18:00:01</td>
-                    <td>rich</td>
-                    <td>
-                        <button>修改</button>
-                        <button>删除</button>
-                    </td>
-                </tr>
+                {{range  $index,$elem:= .cards}}
+                    <tr>
 
-                <tr>
-                    <td>rich</td>
-                    <td>6666888866668888</td>
-                    <td>2019-06-06 18:00:01</td>
-                    <td>william</td>
-                    <td>
-                        <button>修改</button>
-                        <button>删除</button>
-                    </td>
-                </tr>
+                        <td>{{$elem.Name}}</td>
+                        <td>{{$elem.CardNumber}}</td>
+                        <td>{{$elem.Created}}</td>
+                        <td>{{$elem.Operator}}</td>
+                        <td>
+                            <button>修改</button>
+                            <button>删除</button>
+                        </td>
 
-                <tr>
-                    <td>niko</td>
-                    <td>6666888866668888</td>
-                    <td>2019-06-06 18:00:01</td>
-                    <td>derek</td>
-                    <td>
-                        <button>修改</button>
-                        <button>删除</button>
-                    </td>
-                </tr>
+                    </tr>
+                {{end}}
 
                 </tbody>
             </table>

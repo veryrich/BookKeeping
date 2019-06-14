@@ -1,6 +1,7 @@
 package models
 
 import (
+	"github.com/astaxie/beego/logs"
 	"github.com/astaxie/beego/orm"
 	"time"
 )
@@ -29,5 +30,25 @@ func CreateCard(name, cardNumber, operator string) bool {
 	}
 
 	return true
+
+}
+
+func ListAllCards() []*Cards {
+	o := orm.NewOrm()
+
+	//var lists []orm.ParamsList
+	//
+	//num, err := o.Raw("select * from cards").ValuesList(&lists)
+	//if err == nil && num > 0 {
+	//	return lists
+	//}
+	var cards []*Cards
+	query := o.QueryTable("cards")
+	_, e := query.All(&cards)
+	if e != nil {
+		logs.Error(e)
+	}
+
+	return cards
 
 }

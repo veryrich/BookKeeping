@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {{template "template/link.html"}}
+    <script type="text/javascript" src="../../static/js/admin/user.js"></script>
+    <title>增加操作员 - 管理页面</title>
+</head>
+<body>
+
+<div class="ui raised very padded text container segment" style="margin-top: 10%">
+    <h2 class="ui header">增加操作员</h2>
+
+    <form class="ui form" method="post" action="/admin/user" enctype="application/x-www-form-urlencoded">
+        {{ .xsrfdata }}
+        <div class="field">
+            <label>账号</label>
+            <input type="text" name="username" placeholder="用户名..">
+        </div>
+        <div class="field">
+            <label>密码</label>
+            <input type="password" name="password" placeholder="密码..">
+        </div>
+        <div class="field">
+            <label>确认密码</label>
+            <input type="password" name="confirmPassword" placeholder="确认密码..">
+        </div>
+        <div class="field">
+            <div class="ui toggle checkbox">
+                <input type="checkbox" name="isAdmin" tabindex="0" class="hidden" value="true">
+                <label>是否为管理员</label>
+            </div>
+        </div>
+        <button class="ui button" type="submit">提交</button>
+
+        <div class="ui error message"></div>
+        <div>{{.status}}</div>
+    </form>
+
+</div>
+</body>
+
+</html>

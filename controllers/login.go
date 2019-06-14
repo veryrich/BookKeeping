@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"BookKeeping/models"
-	"fmt"
 	"github.com/astaxie/beego"
 	"html/template"
 	"time"
@@ -44,8 +43,6 @@ func (this *LoginController) Post() {
 	} else {
 		this.Data["status"] = "登录失败! 用户名或密码不正确"
 	}
-
-	fmt.Println("controller 打印：", user, pwd)
 
 	this.TplName = "login.html"
 
