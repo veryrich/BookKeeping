@@ -36,45 +36,18 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>William</td>
-                    <td>6666888866668888</td>
-                    <td>2019-06-06 18:00:01</td>
-                    <td>niko</td>
-                    <td>
-                        增加
-                    </td>
-                </tr>
 
-                <tr>
-                    <td>Derek</td>
-                    <td>6666888866668888</td>
-                    <td>2019-06-06 18:00:01</td>
-                    <td>rich</td>
-                    <td>
-                        修改
-                    </td>
-                </tr>
+                {{range  $index,$elem:= .cardLogs}}
+                    <tr>
 
-                <tr>
-                    <td>rich</td>
-                    <td>6666888866668888</td>
-                    <td>2019-06-06 18:00:01</td>
-                    <td>william</td>
-                    <td>
-                        删除
-                    </td>
-                </tr>
+                        <td>{{$elem.Name}}</td>
+                        <td>{{$elem.CardNumber}}</td>
+                        <td>{{$elem.Created}}</td>
+                        <td>{{$elem.Operator}}</td>
+                        <td>{{$elem.Action}}</td>
 
-                <tr>
-                    <td>niko</td>
-                    <td>6666888866668888</td>
-                    <td>2019-06-06 18:00:01</td>
-                    <td>derek</td>
-                    <td>
-                        增加
-                    </td>
-                </tr>
+                    </tr>
+                {{end}}
 
                 </tbody>
             </table>

@@ -1,6 +1,7 @@
 package models
 
 import (
+	"fmt"
 	"github.com/astaxie/beego/logs"
 	"github.com/astaxie/beego/orm"
 	"time"
@@ -33,15 +34,33 @@ func CreateCard(name, cardNumber, operator string) bool {
 
 }
 
+func UpdateCard(oldCardNumber, newName, newCardNumber, operator string) bool {
+
+	o := orm.NewOrm()
+	card := Cards{CardNumber: oldCardNumber}
+	card.CardNumber = oldCardNumber
+	fmt.Println("models", oldCardNumber)
+	fmt.Println("models", card.CardNumber)
+	fmt.Println("models", card)
+
+	if o.Read(&card, "card_number") == nil {
+		card.CardNumber = newCardNumber
+		card.Name = newName
+		card.Operator = operator
+		if num, err := o.Update(&card, "card_number", "name","operator"); err == nil {
+			logs.Info(num)
+			return true
+		}
+	} else {
+		fmt.Println("未读取到该卡")
+	}
+	return false
+
+}
+
 func ListAllCards() []*Cards {
 	o := orm.NewOrm()
 
-	//var lists []orm.ParamsList
-	//
-	//num, err := o.Raw("select * from cards").ValuesList(&lists)
-	//if err == nil && num > 0 {
-	//	return lists
-	//}
 	var cards []*Cards
 	query := o.QueryTable("cards")
 	_, e := query.All(&cards)

@@ -1,6 +1,7 @@
 package models
 
 import (
+	"github.com/astaxie/beego/logs"
 	"github.com/astaxie/beego/orm"
 	"time"
 )
@@ -22,12 +23,7 @@ func init() {
 
 func CardLogging(name, cardNumber, operator, action string) bool {
 	o := orm.NewOrm()
-	cardLog := CardLog{
-		Name:       name,
-		CardNumber: cardNumber,
-		Operator:   operator,
-		Action:     action,
-	}
+	cardLog := CardLog{Name: name, CardNumber: cardNumber, Operator: operator, Action: action}
 	_, err := o.Insert(&cardLog)
 
 	if err != nil {
@@ -35,4 +31,17 @@ func CardLogging(name, cardNumber, operator, action string) bool {
 	}
 
 	return true
+}
+
+func ListCardLogs() []*CardLog {
+	o := orm.NewOrm()
+
+	var cards []*CardLog
+	query := o.QueryTable("card_log")
+	_, e := query.All(&cards)
+	if e != nil {
+		logs.Error(e)
+	}
+
+	return cards
 }

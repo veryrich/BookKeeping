@@ -3,6 +3,7 @@ package controllers
 import (
 	"BookKeeping/models"
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/logs"
 	"html/template"
 )
 
@@ -32,12 +33,19 @@ func (this *CardController) AddCard() {
 	cardNumber := this.GetString("cardNumber")
 	operator := this.GetSession(SESSION_USER_KEY)
 
+	// 校验数据，并添加卡片
 	if operator != nil {
 		res := models.CreateCard(name, cardNumber, operator.(string))
 		if !res {
 			this.Data["status"] = "添加失败，卡号重复"
 		} else {
 			this.Data["status"] = "添加卡片成功"
+
+			// 如果添加卡片成功，记录操作日志
+			logRes := models.CardLogging(name, cardNumber, operator.(string), "调增")
+			if !logRes {
+				logs.Error(logRes)
+			}
 		}
 	} else {
 		this.Data["status"] = "非法操作，用户未登录"
@@ -50,4 +58,44 @@ func (this *CardController) AddCard() {
 // @router /card [post]
 func (this *CardController) Post() {
 	this.TplName = "card.html"
+}
+
+// @router /card/edit/ [get]
+func (this *CardController) EditCard() {
+	this.Data["xsrfdata"] = template.HTML(this.XSRFFormHTML())
+	oldCardNumber := this.Input().Get("cardNumber")
+	this.Data["oldCardNumber"] = oldCardNumber
+	this.TplName = "cardEdit.html"
+}
+
+// @router /card/edit/ [post]
+func (this *CardController) UpdateCard() {
+	this.Data["xsrfdata"] = template.HTML(this.XSRFFormHTML())
+
+	// 准备数据
+	newName := this.GetString("name")
+	newCardNumber := this.GetString("newCardNumber")
+	oldCardNumber := this.GetString("oldCardNumber")
+	operator := this.GetSession(SESSION_USER_KEY)
+
+	// 校验数据，并修改卡片
+	if operator != nil {
+		res := models.UpdateCard(oldCardNumber, newName, newCardNumber, operator.(string))
+		if !res {
+			this.Data["status"] = "修改失败，卡号不存在，或不安全的操作"
+		} else {
+			this.Data["status"] = "修改卡片成功"
+
+			// 如果修改卡片成功，记录操作日志
+			logRes := models.CardLogging(newName, newCardNumber, operator.(string), "修改")
+			if !logRes {
+				logs.Error(logRes)
+			}
+		}
+	} else {
+		this.Data["status"] = "非法操作，用户未登录"
+
+	}
+
+	this.TplName = "cardEdit.html"
 }

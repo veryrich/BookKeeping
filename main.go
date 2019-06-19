@@ -11,7 +11,7 @@ func init() {
 	// 初始化数据库
 
 	orm.RegisterDriver("mysql", orm.DRMySQL)
-	orm.RegisterDataBase("default", "mysql", "rich:www.123.com@tcp(192.168.120.78:3306)/BookKeeping?charset=utf8mb4")
+	orm.RegisterDataBase("default", "mysql", "rich:www.123.com@tcp(192.168.120.78:3306)/BookKeeping?charset=utf8mb4&loc=Asia%2FShanghai")
 	orm.RunSyncdb("default", false, true)
 	orm.Debug = true
 }

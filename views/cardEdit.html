@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {{template "template/link.html"}}
+    <title>修改卡片</title>
+</head>
+<body>
+
+<div class="ui grid">
+
+    <div class="one column row"></div>
+    <div class="one column row">
+        <div class="column ui header" style="text-align: center">修改卡片</div>
+    </div>
+
+    <div class="twelve column row">
+        <div class="one wide column"></div>
+
+        <div class="four wide column">
+            {{template "template/menu.html"}}
+        </div>
+        <div class="five wide column">
+            <form class="ui form" action="/card/edit" method="post" enctype="application/x-www-form-urlencoded"
+                  accept-charset="utf-8">
+                {{ .xsrfdata }}
+
+                <div class="field">
+                    <label>当前修改卡</label>
+                    <input type="text" name="oldCardNumber" readonly="" value={{.oldCardNumber}}>
+                </div>
+
+                <div class="field">
+                    <label>姓名</label>
+                    <input type="text" name="name" placeholder="请输入姓名..">
+                </div>
+
+                <div class="field">
+                    <label>卡号</label>
+                    <input type="text" name="newCardNumber" placeholder="请输入卡号..">
+                </div>
+
+                <button class="ui button" type="submit">修改卡片</button>
+            </form>
+
+            <div>{{.status}}</div>
+
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>
