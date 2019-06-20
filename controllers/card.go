@@ -35,6 +35,12 @@ func (this *CardController) AddCard() {
 
 	// 校验数据，并添加卡片
 	if operator != nil {
+
+		if name != "" && cardNumber != "" {
+			this.Data["status"] = "姓名或卡号不能为空"
+			return
+		}
+
 		res := models.CreateCard(name, cardNumber, operator.(string))
 		if !res {
 			this.Data["status"] = "添加失败，卡号重复"
@@ -42,7 +48,7 @@ func (this *CardController) AddCard() {
 			this.Data["status"] = "添加卡片成功"
 
 			// 如果添加卡片成功，记录操作日志
-			logRes := models.CardLogging(name, cardNumber, operator.(string), "调增")
+			logRes := models.CardLogging(name, cardNumber, operator.(string), "增加")
 			if !logRes {
 				logs.Error(logRes)
 			}
@@ -98,4 +104,21 @@ func (this *CardController) UpdateCard() {
 	}
 
 	this.TplName = "cardEdit.html"
+}
+
+// @router /card/delete/ [get]
+func (this *CardController) DeleteCard() {
+
+	operator := this.GetSession(SESSION_USER_KEY)
+
+	if operator != nil {
+		cardNumber := this.Input().Get("cardNumber")
+		models.DeleteCard(cardNumber)
+		this.Redirect("/card", 302)
+	} else {
+		this.Data["status"] = "非法操作，用户未登录"
+		this.Redirect("/login", 302)
+
+	}
+
 }

@@ -15,9 +15,38 @@ $().ready(function () {
     });
 
     $(".ui.positive.right.labeled.icon.button").click(function () {
-        // window.location.href = "/nginx/delete/" + window.td_text;
-        alert(window.td_text)
+        window.location.href = "/card/delete?cardNumber=" + window.td_text;
     });
+
+    $(".ui.red.button").click(function () {
+        alert("点击了删除")
+    });
+
+
+    // 添加卡片表单验证
+    $('#addCard')
+        .form({
+            fields: {
+                email: {
+                    identifier: 'name',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: '姓名不能为空'
+                        }
+                    ]
+                },
+                password: {
+                    identifier: 'cardNumber',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: '卡号不能为空'
+                        }
+                    ]
+                }
+            }
+        });
 
 
 });

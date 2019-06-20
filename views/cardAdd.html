@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {{template "template/link.html"}}
+    <script type="text/javascript" src="../static/js/card.js"></script>
     <title>添加卡片</title>
 </head>
 <body>
@@ -24,7 +25,7 @@
             {{template "template/menu.html"}}
         </div>
         <div class="five wide column">
-            <form class="ui form" action="/card/add" method="post" enctype="application/x-www-form-urlencoded"
+            <form class="ui large form" action="/card/add" method="post" id="addCard" enctype="application/x-www-form-urlencoded"
                   accept-charset="utf-8">
                 {{ .xsrfdata }}
                 <div class="field">
@@ -38,9 +39,11 @@
                 </div>
 
                 <button class="ui button" type="submit">添加卡片</button>
+                <div class="ui error message"></div>
             </form>
 
             <div>{{.status}}</div>
+
 
         </div>
 

@@ -81,6 +81,15 @@ func init() {
 
     beego.GlobalControllerRouter["BookKeeping/controllers:CardController"] = append(beego.GlobalControllerRouter["BookKeeping/controllers:CardController"],
         beego.ControllerComments{
+            Method: "DeleteCard",
+            Router: `/card/delete/`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["BookKeeping/controllers:CardController"] = append(beego.GlobalControllerRouter["BookKeeping/controllers:CardController"],
+        beego.ControllerComments{
             Method: "EditCard",
             Router: `/card/edit/`,
             AllowHTTPMethods: []string{"get"},

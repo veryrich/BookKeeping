@@ -21,6 +21,8 @@ func init() {
 	orm.RegisterModel(new(Cards))
 }
 
+// todo: 优化 1.返回文字错误到controllers。 2.利用结构体解析用户给的数据
+
 func CreateCard(name, cardNumber, operator string) bool {
 	o := orm.NewOrm()
 	card := Cards{Name: name, CardNumber: cardNumber, Operator: operator}
@@ -39,15 +41,13 @@ func UpdateCard(oldCardNumber, newName, newCardNumber, operator string) bool {
 	o := orm.NewOrm()
 	card := Cards{CardNumber: oldCardNumber}
 	card.CardNumber = oldCardNumber
-	fmt.Println("models", oldCardNumber)
-	fmt.Println("models", card.CardNumber)
-	fmt.Println("models", card)
 
+	// 先读取一下，确定数据存在后，再进行修改
 	if o.Read(&card, "card_number") == nil {
 		card.CardNumber = newCardNumber
 		card.Name = newName
 		card.Operator = operator
-		if num, err := o.Update(&card, "card_number", "name","operator"); err == nil {
+		if num, err := o.Update(&card, "card_number", "name", "operator"); err == nil {
 			logs.Info(num)
 			return true
 		}
@@ -69,5 +69,14 @@ func ListAllCards() []*Cards {
 	}
 
 	return cards
+
+}
+
+func DeleteCard(cardNumber string) {
+	// 删除卡片
+	o := orm.NewOrm()
+	card := Cards{CardNumber: cardNumber}
+	num, err := o.Delete(&card, "card_number")
+	fmt.Println(num, err)
 
 }
