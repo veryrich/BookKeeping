@@ -232,6 +232,15 @@ func init() {
             Filters: nil,
             Params: nil})
 
+    beego.GlobalControllerRouter["BookKeeping/controllers:PageController"] = append(beego.GlobalControllerRouter["BookKeeping/controllers:PageController"],
+        beego.ControllerComments{
+            Method: "Get",
+            Router: `/page`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
     beego.GlobalControllerRouter["BookKeeping/controllers:StatisticsBalanceController"] = append(beego.GlobalControllerRouter["BookKeeping/controllers:StatisticsBalanceController"],
         beego.ControllerComments{
             Method: "Get",

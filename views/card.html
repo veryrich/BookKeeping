@@ -77,6 +77,12 @@
 
                 </tbody>
             </table>
+            <div class="ui pagination menu" style="margin-left: 20%">
+                <a class="item" href="/card?pageIndex=1">首页</a>
+                <a class="item" href="/card?pageIndex={{pre .pageIndex}}">上一页</a>
+                <a class="item" href="/card?pageIndex={{next .pageIndex .pageCount}}">下一页</a>
+                <a class="item" href="/card/?pageIndex={{.pageCount}}">尾页</a>
+            </div>
 
         </div>
 

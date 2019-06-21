@@ -5,6 +5,7 @@ import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/logs"
 	"html/template"
+	"math"
 )
 
 type CardController struct {
@@ -13,9 +14,30 @@ type CardController struct {
 
 // @router /card [get]
 func (this *CardController) Get() {
-	res := models.ListAllCards()
 
-	this.Data["cards"] = res
+	//确定每页显示数
+	pageSize := 10
+
+	//获取页码
+	pageIndex, err := this.GetInt("pageIndex")
+	if err != nil {
+		pageIndex = int(1)
+	}
+
+	//确定数据的起始位置
+	start := (pageIndex - 1) * pageSize
+
+	//从db中获取数据
+	cards, count:= models.QueryCards(pageSize, start)
+
+	//获取总页数
+	pageCount := math.Ceil(float64(count) / float64(pageSize))
+
+	this.Data["cards"] = cards
+
+	this.Data["count"] = count
+	this.Data["pageCount"] = int(pageCount)
+	this.Data["pageIndex"] = pageIndex
 
 	this.TplName = "card.html"
 }

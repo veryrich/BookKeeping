@@ -55,21 +55,27 @@ func UpdateCard(oldCardNumber, newName, newCardNumber, operator string) bool {
 		fmt.Println("未读取到该卡")
 	}
 	return false
-
 }
 
-func ListAllCards() []*Cards {
+// 取出所有卡片，并返回卡片结果集，和数量
+func QueryCards(pageSize, start int) (cardRes []*Cards, count int64) {
 	o := orm.NewOrm()
 
 	var cards []*Cards
 	query := o.QueryTable("cards")
-	_, e := query.All(&cards)
-	if e != nil {
-		logs.Error(e)
+	count, err := query.Count()
+	if err != nil {
+		logs.Error("获取count失败")
 	}
 
-	return cards
+	//查询数据库部分数据
+	_, err = query.Limit(pageSize, start).All(&cards)
+	//_, err = query.All(&cards)
+	if err != nil {
+		logs.Error(err)
+	}
 
+	return cards, count
 }
 
 func DeleteCard(cardNumber string) {
