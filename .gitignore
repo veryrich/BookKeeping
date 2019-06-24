@@ -4,6 +4,7 @@
 *.dll
 *.so
 *.dylib
+*.log
 
 # Test binary, build with `go test -c`
 *.test
@@ -13,3 +14,6 @@
 
 # Drectorys
 .idea/
+
+# Debug compile file
+BookKeeping
