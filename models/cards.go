@@ -44,6 +44,7 @@ func ReadOne(cardNumber string) string {
 }
 
 func CreateCard(name, cardNumber, operator string) bool {
+	// 创建卡片，根据传入值创建
 	o := orm.NewOrm()
 	card := Cards{Name: name, CardNumber: cardNumber, Operator: operator}
 	_, err := o.Insert(&card)
@@ -102,6 +103,38 @@ func DeleteCard(cardNumber string) {
 	o := orm.NewOrm()
 	card := Cards{CardNumber: cardNumber}
 	num, err := o.Delete(&card, "card_number")
-	fmt.Println(num, err)
+	logs.Debug(num, err)
+
+}
+
+func CardFilter(name, cardNumber string) []*Cards {
+	// 卡片筛选功能，根据传入值去数据库取数据
+	o := orm.NewOrm()
+
+	var cards []*Cards
+	query := o.QueryTable("cards")
+
+	switch {
+	case name != "" && cardNumber == "":
+		_, err := query.Filter("name__contains", name).All(&cards)
+		if err != nil {
+			logs.Info(err)
+		}
+
+	case cardNumber != "" && name == "":
+		_, err := query.Filter("card_number", cardNumber).All(&cards)
+		if err != nil {
+			logs.Info(err)
+		}
+
+	case name != "" && cardNumber != "":
+		_, err := query.Filter("card_number", cardNumber).Filter("name", name).All(&cards)
+		if err != nil {
+			logs.Info(err)
+		}
+
+	}
+
+	return cards
 
 }

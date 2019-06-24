@@ -14,6 +14,7 @@ type CardController struct {
 
 // @router /card [get]
 func (this *CardController) Get() {
+	this.Data["xsrfdata"] = template.HTML(this.XSRFFormHTML())
 
 	//确定每页显示数
 	pageSize := 10
@@ -145,5 +146,32 @@ func (this *CardController) DeleteCard() {
 		this.Redirect("/login", 302)
 
 	}
+
+}
+
+// @router /card/filter/ [get]
+func (this *CardController) CardShowFilter() {
+	this.Data["xsrfdata"] = template.HTML(this.XSRFFormHTML())
+
+	this.TplName = "cardFilter.html"
+
+}
+
+// @router /card/filter/ [post]
+func (this *CardController) CardFilter() {
+	this.Data["xsrfdata"] = template.HTML(this.XSRFFormHTML())
+
+	name := this.GetString("name")
+	cardNumber := this.GetString("cardNumber")
+
+	if name == "" && cardNumber == "" {
+		this.Data["res"] = ""
+		this.Abort("非法请求，筛选不可都为空")
+	}
+
+	res := models.CardFilter(name, cardNumber)
+
+	this.Data["res"] = res
+	this.TplName = "cardFilter.html"
 
 }

@@ -51,9 +51,4 @@ func ListCardLogs(pageSize, start int) (cardRes []*CardLog, count int64) {
 
 	return cards, count
 
-	//_, e := query.OrderBy("-created").All(&cards)
-	//if e != nil {
-	//	logs.Error(e)
-	//}
-
 }

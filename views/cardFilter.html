@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {{template "template/link.html"}}
     <script type="text/javascript" src="../static/js/card.js"></script>
-    <title>卡片管理</title>
+    <title>筛选结果</title>
 </head>
 <body>
 
@@ -15,7 +15,7 @@
 
     <div class="one column row"></div>
     <div class="one column row">
-        <div class="column ui header" style="text-align: center">卡片管理</div>
+        <div class="column ui header" style="text-align: center">筛选结果</div>
     </div>
 
     <div class="twelve column row">
@@ -60,7 +60,7 @@
                 </thead>
                 <tbody>
 
-                {{range  $index,$elem:= .cards}}
+                {{range  $index,$elem:= .res}}
                     <tr>
 
                         <td>{{$elem.Name}}</td>
@@ -77,13 +77,6 @@
 
                 </tbody>
             </table>
-            <div class="ui pagination menu" style="margin-left: 20%">
-                <a class="item" href="/card?pageIndex=1">首页</a>
-                <a class="item" href="/card?pageIndex={{pre .pageIndex}}">上一页</a>
-                <a class="item" href="/card?pageIndex={{next .pageIndex .pageCount}}">下一页</a>
-                <a class="item" href="/card?pageIndex={{.pageCount}}">尾页</a>
-                <a class="disabled item">共{{.pageCount}}页</a>
-            </div>
 
         </div>
 

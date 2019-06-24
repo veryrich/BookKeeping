@@ -106,6 +106,24 @@ func init() {
             Filters: nil,
             Params: nil})
 
+    beego.GlobalControllerRouter["BookKeeping/controllers:CardController"] = append(beego.GlobalControllerRouter["BookKeeping/controllers:CardController"],
+        beego.ControllerComments{
+            Method: "CardShowFilter",
+            Router: `/card/filter/`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["BookKeeping/controllers:CardController"] = append(beego.GlobalControllerRouter["BookKeeping/controllers:CardController"],
+        beego.ControllerComments{
+            Method: "CardFilter",
+            Router: `/card/filter/`,
+            AllowHTTPMethods: []string{"post"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
     beego.GlobalControllerRouter["BookKeeping/controllers:CardLogController"] = append(beego.GlobalControllerRouter["BookKeeping/controllers:CardLogController"],
         beego.ControllerComments{
             Method: "Get",
