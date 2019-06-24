@@ -33,15 +33,27 @@ func CardLogging(name, cardNumber, operator, action string) bool {
 	return true
 }
 
-func ListCardLogs() []*CardLog {
+func ListCardLogs(pageSize, start int) (cardRes []*CardLog, count int64) {
 	o := orm.NewOrm()
 
 	var cards []*CardLog
 	query := o.QueryTable("card_log")
-	_, e := query.All(&cards)
-	if e != nil {
-		logs.Error(e)
+	count, err := query.Count()
+	if err != nil {
+		logs.Error("获取count失败")
 	}
 
-	return cards
+	//查询数据库部分数据
+	_, err = query.Limit(pageSize, start).OrderBy("-created").All(&cards)
+	if err != nil {
+		logs.Error(err)
+	}
+
+	return cards, count
+
+	//_, e := query.OrderBy("-created").All(&cards)
+	//if e != nil {
+	//	logs.Error(e)
+	//}
+
 }

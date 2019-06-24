@@ -18,11 +18,6 @@ $().ready(function () {
         window.location.href = "/card/delete?cardNumber=" + window.td_text;
     });
 
-    $(".ui.red.button").click(function () {
-        alert("点击了删除")
-    });
-
-
     // 添加卡片表单验证
     $('#addCard')
         .form({

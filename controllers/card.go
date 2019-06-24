@@ -28,13 +28,12 @@ func (this *CardController) Get() {
 	start := (pageIndex - 1) * pageSize
 
 	//从db中获取数据
-	cards, count:= models.QueryCards(pageSize, start)
+	cards, count := models.QueryCards(pageSize, start)
 
 	//获取总页数
 	pageCount := math.Ceil(float64(count) / float64(pageSize))
 
 	this.Data["cards"] = cards
-
 	this.Data["count"] = count
 	this.Data["pageCount"] = int(pageCount)
 	this.Data["pageIndex"] = pageIndex
@@ -60,7 +59,6 @@ func (this *CardController) AddCard() {
 
 		if name != "" && cardNumber != "" {
 			this.Data["status"] = "姓名或卡号不能为空"
-			return
 		}
 
 		res := models.CreateCard(name, cardNumber, operator.(string))
@@ -135,7 +133,12 @@ func (this *CardController) DeleteCard() {
 
 	if operator != nil {
 		cardNumber := this.Input().Get("cardNumber")
+		name := models.ReadOne(cardNumber)
 		models.DeleteCard(cardNumber)
+
+		// 记录日志
+		models.CardLogging(name, cardNumber, operator.(string), "删除")
+
 		this.Redirect("/card", 302)
 	} else {
 		this.Data["status"] = "非法操作，用户未登录"

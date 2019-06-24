@@ -81,7 +81,8 @@
                 <a class="item" href="/card?pageIndex=1">首页</a>
                 <a class="item" href="/card?pageIndex={{pre .pageIndex}}">上一页</a>
                 <a class="item" href="/card?pageIndex={{next .pageIndex .pageCount}}">下一页</a>
-                <a class="item" href="/card/?pageIndex={{.pageCount}}">尾页</a>
+                <a class="item" href="/card?pageIndex={{.pageCount}}">尾页</a>
+                <a class="disabled item">共{{.pageCount}}页</a>
             </div>
 
         </div>
@@ -90,20 +91,7 @@
 
 </div>
 
-<div class="ui small modal">
-    <div class="header">删除确认</div>
-    <div class="content">
-        <p>确认删除这个vhost?</p>
-    </div>
-    <div class="actions">
-        <div class="ui red button">否</div>
-        <div class="ui positive right labeled icon button">
-            <div style="color: white">Yes</div>
-            <i class="checkmark icon"></i>
-        </div>
-    </div>
-</div>
-
+{{template "template/deleteModal.html"}}
 
 </body>
 </html>

@@ -37,7 +37,7 @@
                 </thead>
                 <tbody>
 
-                {{range  $index,$elem:= .cardLogs}}
+                {{range  $index,$elem:= .cards}}
                     <tr>
 
                         <td>{{$elem.Name}}</td>
@@ -51,6 +51,14 @@
 
                 </tbody>
             </table>
+
+            <div class="ui pagination menu" style="margin-left: 20%">
+                <a class="item" href="/card/log?pageIndex=1">首页</a>
+                <a class="item" href="/card/log?pageIndex={{pre .pageIndex}}">上一页</a>
+                <a class="item" href="/card/log?pageIndex={{next .pageIndex .pageCount}}">下一页</a>
+                <a class="item" href="/card/log?pageIndex={{.pageCount}}">尾页</a>
+                <a class="disabled item">共{{.pageCount}}页</a>
+            </div>
 
         </div>
 

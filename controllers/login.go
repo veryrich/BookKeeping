@@ -55,7 +55,7 @@ func (this *LoginController) Logout() {
 	this.Ctx.SetCookie("username", user, -1)
 	this.DelSession(SESSION_USER_KEY)
 	this.DestroySession()
-	this.Redirect("/login", 301)
+	this.Redirect("/login", 302)
 
 }
 

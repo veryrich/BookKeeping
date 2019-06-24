@@ -61,5 +61,3 @@ func (this *PageController) Get() {
 
 	this.TplName = "page.html"
 }
-
-//  todo: 合并分页功能到卡片管理中
