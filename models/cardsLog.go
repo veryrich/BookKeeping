@@ -7,13 +7,15 @@ import (
 )
 
 type CardLog struct {
-	Id         int
-	Name       string
-	CardNumber string
-	Operator   string
-	Action     string
-	Created    time.Time `orm:"auto_now_add;type(datetime)" describe:"创建时间"`
-	Updated    time.Time `orm:"auto_now;type(datetime)" describe:"修改时间"`
+	Id            int
+	Name          string
+	CardNumber    string
+	Amount        float64 `orm:"digits(12);decimals(2);default(0)" description:"余额"`
+	ServiceCharge float64 `orm:"digits(12);decimals(2);default(0)" description:"手续费"`
+	Operator      string
+	Action        string
+	Created       time.Time `orm:"auto_now_add;type(datetime)" description:"创建时间"`
+	Updated       time.Time `orm:"auto_now;type(datetime)" description:"修改时间"`
 }
 
 // 注册数据库

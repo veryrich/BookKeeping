@@ -8,12 +8,14 @@ import (
 )
 
 type Cards struct {
-	Id         int
-	Name       string
-	CardNumber string `orm:"unique" describe:"卡号"`
-	Operator   string
-	Created    time.Time `orm:"auto_now_add;type(datetime)" describe:"创建时间"`
-	Updated    time.Time `orm:"auto_now;type(datetime)" describe:"修改时间"`
+	Id            int
+	Name          string
+	CardNumber    string  `orm:"unique" description:"卡号"`
+	Amount        float64 `orm:"digits(12);decimals(2);default(0)" description:"余额"`
+	ServiceCharge float64 `orm:"digits(12);decimals(2);default(0)" description:"手续费"`
+	Operator      string
+	Created       time.Time `orm:"auto_now_add;type(datetime)" description:"创建时间"`
+	Updated       time.Time `orm:"auto_now;type(datetime)" description:"修改时间"`
 }
 
 // 注册数据库
@@ -24,7 +26,6 @@ func init() {
 // todo: 优化 1.返回文字错误到controllers。 2.利用结构体解析用户给的数据
 
 func ReadOne(cardNumber string) string {
-	fmt.Println("model层打印", cardNumber)
 	o := orm.NewOrm()
 	card := Cards{CardNumber: cardNumber}
 	err := o.Read(&card, "card_number")

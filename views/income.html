@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {{template "template/link.html"}}
+    <script type="text/javascript" src="../static/js/income.js"></script>
     <title>入款</title>
 </head>
 <body>
@@ -28,28 +29,34 @@
                   accept-charset="utf-8">
                 {{ .xsrfdata }}
                 <div class="field">
-                    <label>用户名</label>
-                    <input type="text" name="name" placeholder="输入用户名..">
+                    <label>用户名：</label>
+                    <input id="name" type="text" name="name" placeholder="输入用户名..">
                 </div>
 
                 <div class="field">
                     <label>卡号：</label>
-                    <input type="text" name="cardNumber" placeholder="输入用户后显示.." readonly="">
+                    <div class="ui fluid search selection dropdown">
+                        <input type="hidden" name="cardNumber">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">输入用户后显示..</div>
+                        <div class="menu" id="cardDropdown"></div>
+                    </div>
                 </div>
+
 
                 <div class="field">
                     <label>金额：</label>
-                    <input type="text" name="amount" placeholder="输入金额..">
+                    <input id="amount" type="text" name="amount" placeholder="输入金额..">
                 </div>
 
                 <div class="field">
                     <label>提现手续费：</label>
-                    <input type="text" name="serviceCharge" placeholder="提现手续费..">
+                    <input id="serviceCharge" type="text" name="serviceCharge" placeholder="提现手续费..">
                 </div>
 
 
                 <div class="ui buttons" style="float: 15px;padding-left: 40%;margin-top: 20px;">
-                    <button class="ui secondary  button">提交</button>
+                    <button id="submit" class="ui secondary disabled button">提交</button>
                     <div class="or"></div>
                     <button type="reset" class="ui  button">重置</button>
                 </div>

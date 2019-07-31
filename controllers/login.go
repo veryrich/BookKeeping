@@ -26,7 +26,6 @@ func (this *LoginController) Get() {
 func (this *LoginController) Post() {
 
 	// login页面 用户登录
-
 	this.Data["xsrfdata"] = template.HTML(this.XSRFFormHTML())
 	user := this.GetString("username")
 	pwd := this.GetString("password")
@@ -45,7 +44,6 @@ func (this *LoginController) Post() {
 	}
 
 	this.TplName = "login.html"
-
 }
 
 // @router /logout [get]
@@ -56,6 +54,4 @@ func (this *LoginController) Logout() {
 	this.DelSession(SESSION_USER_KEY)
 	this.DestroySession()
 	this.Redirect("/login", 302)
-
 }
-
